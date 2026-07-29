@@ -72,7 +72,7 @@ export default function LoginPage() {
         <div style={{ width: '100%', maxWidth: '380px' }}>
           
           {/* Logo header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '40px' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '40px', textDecoration: 'none' }}>
             <div style={{
               width: '32px',
               height: '32px',
@@ -90,7 +90,7 @@ export default function LoginPage() {
             <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--obsidian)', letterSpacing: '-0.02em' }}>
               Khoj<span style={{ color: 'var(--primary)' }}>been</span>
             </span>
-          </div>
+          </Link>
 
           <h2 style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontWeight: 400, fontSize: '2.2rem', color: 'var(--obsidian)', marginBottom: '8px' }}>
             Welcome back
