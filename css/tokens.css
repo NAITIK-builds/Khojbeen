@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ─── 1. Design System Tokens ─────────────────────────────────────────── */
+:root {
+  --primary: #D2122E;
+  --primary-hover: #B80F27;
+  --obsidian: #0A0F1E;
+  --white: #FFFFFF;
+  --surface: #F8FAFC;
+  --muted: #64748B;
+  --border: #E2E8F0;
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(10, 15, 30, 0.04);
+  --shadow-md: 0 4px 12px rgba(10, 15, 30, 0.06);
+  --shadow-lg: 0 12px 24px -4px rgba(10, 15, 30, 0.08);
+
+  --font-main: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  --navbar-h: 72px;
+
+  /* Additional Utilities */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-privacy: #8B5CF6;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Hide Dev Toolbars ─────────────────────────────────────────────────── */
+[data-vercel-toolbar],
+#vercel-live-feedback,
+.__next-build-watcher,
+#nextjs-portal,
+next-route-announcer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+  width: 0 !important;
+  height: 0 !important;
+}

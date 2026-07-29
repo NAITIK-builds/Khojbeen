@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khojbeen | AI-Powered Smart Campus Lost & Found Assistant</title>
+  <meta name="description" content="AI Smart Campus Lost & Found Assistant with Voice AI, Multimodal Photo Matching, Privacy Secrecy Shield, and Pre-Request Notifications.">
+  
+  <!-- Design System & Styles -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark">K</div>
+        Khoj<span>been</span> <span style="font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-left: 4px;">AI ASSISTANT</span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <!-- Multi-College Switcher Dropdown -->
+        <select id="college-select" class="category-select" style="padding: 6px 12px; font-size: 0.85rem;">
+          <option value="DELHI_TECH_UNIV">Delhi Technological University (DTU)</option>
+          <option value="IIT_DELHI">IIT Delhi (IITD)</option>
+          <option value="NSUT_DELHI">NSUT Dwarka</option>
+        </select>
+
+        <!-- Role Switcher (User | Admin | Super Admin) -->
+        <div class="role-switcher" role="tablist">
+          <button class="role-btn active" data-role="user">User Portal</button>
+          <button class="role-btn" data-role="admin">College Admin</button>
+          <button class="role-btn" data-role="superadmin">Super Admin</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app-root">
+
+    <!-- ==================== VIEW 1: USER PORTAL ==================== -->
+    <div id="view-user" class="role-view active">
+      
+      <!-- Split Hero Section -->
+      <section class="hero-section">
+        <div class="container">
+          <div style="text-align: center; max-width: 720px; margin: 0 auto 32px;">
+            <div class="badge">AI-Powered Smart Campus Recovery</div>
+            <h1>Lost Something on Campus? <br>Or Found Someone's Belongings?</h1>
+            <p class="subtitle" style="margin: 12px auto 0;">
+              Khojbeen uses AI Computer Vision, Voice-to-Text, and Pre-Request Auto-Notifications to reconnect lost items with their rightful owners instantly.
+            </p>
+          </div>
+
+          <!-- Split Screen Dual Action Hero Grid -->
+          <div class="hero-split-grid">
+            <!-- Left Side: I Lost Something -->
+            <div class="split-hero-card lost-side">
+              <div>
+                <div class="card-tag-header">
+                  <div class="badge" style="margin-bottom: 0;">I Lost Something</div>
+                  <span style="font-size: 0.8rem; font-weight: 600; color: var(--primary);">Pre-Request Queue Active</span>
+                </div>
+                <h3>Report & Search Lost Items</h3>
+                <p style="margin-top: 8px;">
+                  Upload photos, type a description, or use <strong>Voice AI</strong> ("Mera blue Milton bottle library floor 2 me reh gaya"). If not found yet, your request is stored in the <em>Pre-Request Queue</em> to auto-notify you when discovered!
+                </p>
+              </div>
+              <div style="margin-top: 24px;">
+                <button class="btn btn-primary btn-lg" style="width: 100%;" id="btn-open-lost-modal">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                  Report Lost Item
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Side: I Found Something -->
+            <div class="split-hero-card found-side">
+              <div>
+                <div class="card-tag-header">
+                  <div class="badge badge-privacy" style="margin-bottom: 0;">I Found Something</div>
+                  <span style="font-size: 0.8rem; font-weight: 600; color: #7C3AED;">🔒 Privacy Secrecy Shield</span>
+                </div>
+                <h3>Found an Unclaimed Item?</h3>
+                <p style="margin-top: 8px;">
+                  Submit details, speak a voice statement, or upload a photo.
+                  <br><strong style="color: var(--obsidian);">Privacy Guarantee:</strong> Found item photos & detailed specs are <em>strictly hidden from the public</em> to prevent fraudulent claims!
+                </p>
+              </div>
+              <div style="margin-top: 24px;">
+                <button class="btn btn-obsidian btn-lg" style="width: 100%;" id="btn-open-found-modal">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  Report Found Item
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Public Lost Items Feed Section -->
+      <section class="features-section" style="padding-top: 40px;">
+        <div class="container">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <h2>Public Campus Lost Items</h2>
+              <p style="color: var(--muted);">Browsing items reported lost across campus. Click "Claim This Item" to start AI verification.</p>
+            </div>
+            <div class="badge badge-match" id="pre-request-status-badge">
+              AI Matching Engine: 3 Auto-Matches Active
+            </div>
+          </div>
+
+          <!-- Natural Language Search & Category Filter -->
+          <div class="search-filter-bar">
+            <div class="search-input-wrapper">
+              <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="text" id="search-input" class="search-input" placeholder="Natural AI Search (e.g. 'Black wallet near canteen' or 'Casio calculator')...">
+            </div>
+
+            <select id="category-filter" class="category-select">
+              <option value="ALL">All Categories</option>
+              <option value="Water Bottle">Water Bottle</option>
+              <option value="Wallet">Wallet / ID Card</option>
+              <option value="Calculator">Calculator / Electronics</option>
+              <option value="Bag">Bag / Backpack</option>
+              <option value="Keys">Keys</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Items Grid -->
+          <div class="grid-3" id="lost-items-grid">
+            <!-- Dynamic Items Injected by JS -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 2: COLLEGE ADMIN DASHBOARD ==================== -->
+    <div id="view-admin" class="role-view" style="display: none;">
+      <section class="features-section">
+        <div class="container">
+          <div class="card-tag-header">
+            <div>
+              <div class="badge">College Admin Control Desk</div>
+              <h2>Physical Security Locker & Found Inventory</h2>
+              <p style="color: var(--muted);">Manage campus locker inventory, review AI auto-matches (94%+ confidence), and approve claim releases.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-admin-refresh">Refresh Inventory</button>
+          </div>
+
+          <!-- Admin Stats Cards -->
+          <div class="grid-3" style="margin-top: 24px; margin-bottom: 32px;">
+            <div class="card" style="padding: 20px;">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--muted);">TOTAL FOUND ITEMS</span>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--obsidian); margin-top: 4px;">42 Items</div>
+              <span style="font-size: 0.8rem; color: var(--color-success);">Physical Security Lockers A1 - B12</span>
+            </div>
+            <div class="card" style="padding: 20px;">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--muted);">PENDING AI MATCHES</span>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-top: 4px;">3 Matches</div>
+              <span style="font-size: 0.8rem; color: var(--primary);">High Confidence (>94%)</span>
+            </div>
+            <div class="card" style="padding: 20px;">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--muted);">RECOVERY RATE</span>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--obsidian); margin-top: 4px;">94.5%</div>
+              <span style="font-size: 0.8rem; color: var(--color-success);">+3.2% vs last month</span>
+            </div>
+          </div>
+
+          <!-- Found Items Inventory Table (Admin View Only) -->
+          <h3>🔒 Found Items & Security Locker Registry</h3>
+          <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 12px;">
+            Note: These images and details are hidden from public users to prevent fraudulent claims.
+          </p>
+          <div class="data-table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Locker #</th>
+                  <th>Found Item Details</th>
+                  <th>Category</th>
+                  <th>Location Found</th>
+                  <th>Finder Info</th>
+                  <th>Privacy Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-found-tbody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 3: SUPER ADMIN NETWORK CONSOLE ==================== -->
+    <div id="view-superadmin" class="role-view" style="display: none;">
+      <section class="features-section">
+        <div class="container">
+          <div class="badge">Multi-College Network Console</div>
+          <h2>Connected Campuses & Global Recovery Network</h2>
+          <p class="subtitle" style="margin-bottom: 32px;">
+            Super Admin dashboard overseeing cross-college lost & found transfers, system-wide analytics, and campus safety benchmarks.
+          </p>
+
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-icon">🏛️</div>
+              <h3>Delhi Technological Univ</h3>
+              <p>Active Items: 48 Lost | 42 Found<br><strong>Recovery Rate: 94.5%</strong></p>
+              <div style="margin-top: 16px;">
+                <span class="badge badge-match" style="margin-bottom: 0;">Online & Connected</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-icon">🎓</div>
+              <h3>IIT Delhi (IITD)</h3>
+              <p>Active Items: 32 Lost | 29 Found<br><strong>Recovery Rate: 96.1%</strong></p>
+              <div style="margin-top: 16px;">
+                <span class="badge badge-match" style="margin-bottom: 0;">Online & Connected</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-icon">🏫</div>
+              <h3>NSUT Dwarka</h3>
+              <p>Active Items: 25 Lost | 21 Found<br><strong>Recovery Rate: 91.2%</strong></p>
+              <div style="margin-top: 16px;">
+                <span class="badge badge-match" style="margin-bottom: 0;">Online & Connected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal 1: Report Lost Item (Voice AI + Form) -->
+  <div class="modal-overlay" id="modal-lost">
+    <div class="modal-box">
+      <button class="modal-close" class="btn-close-modal">&times;</button>
+      <div class="badge">Report Lost Belonging</div>
+      <h2 style="margin-bottom: 8px;">Describe Your Lost Item</h2>
+      <p style="color: var(--muted); font-size: 0.95rem;">You can type the description or speak using Voice AI.</p>
+
+      <form id="form-report-lost" style="margin-top: 20px;">
+        <div class="voice-recorder-box">
+          <button type="button" class="voice-mic-btn" id="btn-mic-lost">🎙️</button>
+          <div style="font-size: 0.88rem; font-weight: 600; color: var(--obsidian); margin-top: 8px;" id="voice-status-lost">
+            Tap Microphone to Record Voice Statement
+          </div>
+          <div class="waveform" id="waveform-lost">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Item Title / Name</label>
+            <input type="text" id="lost-title" class="search-input" style="padding-left: 14px;" placeholder="e.g. Dark Blue Milton Bottle" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Category</label>
+              <select id="lost-category" class="category-select" style="width: 100%;">
+                <option value="Water Bottle">Water Bottle</option>
+                <option value="Wallet">Wallet / ID Card</option>
+                <option value="Calculator">Calculator</option>
+                <option value="Bag">Bag</option>
+                <option value="Keys">Keys</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Location Lost</label>
+              <input type="text" id="lost-location" class="search-input" style="padding-left: 14px;" placeholder="e.g. Library 2nd Floor" required>
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Detailed Description</label>
+            <textarea id="lost-desc" class="search-input" style="padding-left: 14px; height: 80px;" placeholder="Mention any scratch, sticker, or specific features..."></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Your Name</label>
+              <input type="text" id="lost-name" class="search-input" style="padding-left: 14px;" placeholder="e.g. Aarav Sharma" required>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Contact Phone / Roll #</label>
+              <input type="text" id="lost-contact" class="search-input" style="padding-left: 14px;" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="margin-top: 12px; width: 100%;">
+            Submit & Add to Pre-Request Queue
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Report Found Item (Secrecy Shield) -->
+  <div class="modal-overlay" id="modal-found">
+    <div class="modal-box">
+      <button class="modal-close" class="btn-close-modal">&times;</button>
+      <div class="badge badge-privacy">🔒 Privacy Secrecy Enabled</div>
+      <h2 style="margin-bottom: 8px;">Report Found Item</h2>
+      <p style="color: var(--muted); font-size: 0.95rem;">
+        Your uploaded image and precise internal details will be <strong>hidden from the public</strong> to prevent fake claims.
+      </p>
+
+      <form id="form-report-found" style="margin-top: 20px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Found Item Name</label>
+            <input type="text" id="found-title" class="search-input" style="padding-left: 14px;" placeholder="e.g. Found Blue Bottle" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Category</label>
+              <select id="found-category" class="category-select" style="width: 100%;">
+                <option value="Water Bottle">Water Bottle</option>
+                <option value="Wallet">Wallet / ID Card</option>
+                <option value="Calculator">Calculator</option>
+                <option value="Bag">Bag</option>
+                <option value="Keys">Keys</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Location Found</label>
+              <input type="text" id="found-location" class="search-input" style="padding-left: 14px;" placeholder="e.g. Canteen Counter A" required>
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Detailed Description & Internal Contents</label>
+            <textarea id="found-desc" class="search-input" style="padding-left: 14px; height: 75px;" placeholder="Mention specific details (AI will use this for security quiz)..."></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Security Locker Drop Number</label>
+              <input type="text" id="found-locker" class="search-input" style="padding-left: 14px;" value="LOCKER-B08" required>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600;">Finder Name / Desk</label>
+              <input type="text" id="found-finder" class="search-input" style="padding-left: 14px;" placeholder="e.g. Security Staff / Rohan" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-obsidian btn-lg" style="margin-top: 12px; width: 100%;">
+            🔒 Submit Found Item (Run AI Multimodal Match)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: AI Dynamic Security Claim Verification Quiz -->
+  <div class="modal-overlay" id="modal-claim">
+    <div class="modal-box">
+      <button class="modal-close" class="btn-close-modal">&times;</button>
+      <div class="badge badge-match">AI Claim Security Verification</div>
+      <h2>Verify Ownership</h2>
+      <p style="color: var(--muted); font-size: 0.92rem; margin-top: 4px;">
+        To prevent fraudulent claims, answer these dynamic AI questions generated from item recovery logs.
+      </p>
+
+      <form id="form-claim-quiz" style="margin-top: 20px;">
+        <input type="hidden" id="claim-item-id">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <label style="font-size: 0.88rem; font-weight: 600; color: var(--obsidian);" id="quiz-q1">
+              Question 1: What specific brand logo or mark is on the item?
+            </label>
+            <input type="text" id="quiz-a1" class="search-input" style="padding-left: 14px; margin-top: 6px;" placeholder="Your answer..." required>
+          </div>
+
+          <div>
+            <label style="font-size: 0.88rem; font-weight: 600; color: var(--obsidian);" id="quiz-q2">
+              Question 2: Specify any unique scratch, sticker, or internal content.
+            </label>
+            <input type="text" id="quiz-a2" class="search-input" style="padding-left: 14px; margin-top: 6px;" placeholder="Your answer..." required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 8px;">
+            Verify Answers & Generate Pickup Pass
+          </button>
+        </div>
+      </form>
+
+      <!-- Verification Result Box -->
+      <div id="claim-pass-box" style="display: none; margin-top: 20px; padding: 20px; background: var(--surface); border-radius: var(--radius-md); border: 1px solid var(--color-success); text-align: center;">
+        <div class="badge badge-match" style="margin-bottom: 8px;">OWNERSHIP VERIFIED (98.4% MATCH)</div>
+        <h3 style="color: var(--obsidian);">Verification Pickup Pass Generated</h3>
+        <p style="font-size: 0.9rem; margin-top: 4px;">Show this QR / Passcode at Security Desk B to collect your item.</p>
+        <div style="font-family: monospace; font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 2px; margin: 12px 0;" id="claim-pass-code">
+          DTU-PASS-8849
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Khojbeen AI Assistant. All rights reserved.</div>
+        <div>Minimal Professional Smart Lost & Found Architecture</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Controller JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>
