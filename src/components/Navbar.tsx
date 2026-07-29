@@ -13,6 +13,11 @@ export default function Navbar() {
   // Simulate user session for showcase
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Do not render navbar on auth pages
+  if (pathname === '/login' || pathname === '/register') {
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);

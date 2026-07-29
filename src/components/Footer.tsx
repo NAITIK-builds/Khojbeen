@@ -1,8 +1,16 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Lock } from 'lucide-react';
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname === '/login' || pathname === '/register') {
+    return null;
+  }
   return (
     <footer style={{ padding: '60px 0 32px', backgroundColor: 'var(--white)', borderTop: '1px solid var(--border)', marginTop: '80px' }}>
       <div className="container">

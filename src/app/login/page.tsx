@@ -20,7 +20,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ paddingTop: 'var(--navbar-h)', display: 'grid', gridTemplateColumns: '1.05fr 0.95fr', minHeight: '90vh', backgroundColor: 'var(--white)' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 0.95fr', minHeight: '100vh', backgroundColor: 'var(--white)' }}>
       
       {/* LEFT SIDE: Brand Editorial Panel */}
       <div style={{
